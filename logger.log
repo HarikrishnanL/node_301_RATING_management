@@ -17,3 +17,9 @@ Info: error timestamp: Aug-05-2021 message: getaddrinfo ENOTFOUND undefinedresta
 Info: error timestamp: Aug-05-2021 message: WHERE parameter "id" has invalid "undefined" value
 Info: error timestamp: Aug-05-2021 message: WHERE parameter "id" has invalid "undefined" value
 Info: error timestamp: Aug-05-2021 message: No such rating records available
+Info: error timestamp: Aug-06-2021 message: read ECONNRESET
+Info: error timestamp: Aug-06-2021 message: read ECONNRESET
+Info: error timestamp: Aug-06-2021 message: read ECONNRESET
+Info: error timestamp: Aug-06-2021 message: read ECONNRESET
+Info: error timestamp: Aug-06-2021 message: read ECONNRESET
+Info: error timestamp: Aug-06-2021 message: read ECONNRESET
