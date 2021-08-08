@@ -23,3 +23,6 @@ Info: error timestamp: Aug-06-2021 message: read ECONNRESET
 Info: error timestamp: Aug-06-2021 message: read ECONNRESET
 Info: error timestamp: Aug-06-2021 message: read ECONNRESET
 Info: error timestamp: Aug-06-2021 message: read ECONNRESET
+Info: error timestamp: Aug-08-2021 message: connect ECONNREFUSED 127.0.0.1:5002
+Info: error timestamp: Aug-08-2021 message: connect ECONNREFUSED 127.0.0.1:5002
+Info: error timestamp: Aug-08-2021 message: Such rating not found

@@ -4,29 +4,34 @@ const apiResponse = require('../helpers/apiResponse');
 const customerCustomMessages = require('../domain/customMessages/customer')
 
 
-exports.sessionAuthValidator = async (req,res,next)=>{
-    try{
-        let token = req.header('authToken');
-        if (token) {
-            let payload = JwtAuthUtils.decode(token, process.env.kJWTSecret);
-            let customer = await FetchCustomer.getCustomer(payload.id,token);
+exports.sessionAuthValidator = (req, res, next) => {
 
-            if (customer) {
-                req.user = {
-                    id: customer.id,
-                    email: customer.email,
-                    number: customer.phoneNumber,
-                    token:token
-                }
-                return next();
-            } else {
-                return apiResponse.notFoundResponse(res, customerCustomMessages.errorMessages.CUSTOMER_UNAUTHORIZED);
-            }
-        } else {
-            return apiResponse.customErrorResponse(res, customerCustomMessages.errorMessages.AUTHTOKEN_REQUIRED, 401)
-        }
+    let authHeader = req.get('Authorization');
 
-    }catch(error){
+    if (!authHeader) {
+        const error = new Error('AuthToken required');
+        error.statusCode = 401;
         throw error;
     }
+    const token = authHeader.split(' ')[1];
+    let decodedToken;
+    try {
+        // decodedToken = JwtAuthUtils.decode(token, process.env.kJWTSecret);
+        decodedToken = JwtAuthUtils.decode(token, "customerNodejs");
+    } catch (err) {
+        err.statusCode = 500;
+        throw err;
+    }
+    if (!decodedToken) {
+        const error = new Error('Not authenticated.');
+        error.statusCode = 401;
+        throw error;
+    }
+    req.user = {
+        id: decodedToken.id,
+        email: decodedToken.email,
+        number: decodedToken.phoneNumber,
+        token: token
+    }
+    next();
 }
