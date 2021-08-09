@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "mocha ./test/* --timeout 60000 --exit"
+    "test": "nyc mocha ./test/* --timeout 60000 --exit"
   },
   "keywords": [],
   "author": "Harikrishnan Lakshminarayanan",
@@ -14,6 +14,7 @@
     "chai": "^4.3.4",
     "mocha": "^9.0.3",
     "nodemon": "^2.0.12",
+    "nyc": "^15.1.0",
     "sinon": "^11.1.2"
   },
   "dependencies": {

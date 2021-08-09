@@ -8,7 +8,8 @@ exports.getRestaurant = async (id, token) => {
             .set('authToken',token);
             return restaurant.body.data;
     } catch (error) {
-        logger.error(error.message);
-        throw error;
+       return {
+           status:false
+       }
     }
 }
