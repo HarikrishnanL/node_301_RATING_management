@@ -11,6 +11,24 @@ const authSessionValidator = require('../utils/sessionValidatorUtils');
 const validation = require('../validation/validation');
 
 
+
+
+/**
+ * @swagger
+ * /rating/all:
+ *   get:
+*     summary: Returns the list of all the rating
+*     tags: [Rating]
+*     responses:
+*       200:
+*         description: The list of the rating
+*         content:
+*           application/json:
+*             schema:
+*               type: array
+*               
+ */
+
 router.post('/rating/restaurant/:restaurantId', authSessionValidator.sessionAuthValidator, ratingController.createRating);
 
 router.get('/rating/all',authSessionValidator.sessionAuthValidator,ratingController.getAllRating);

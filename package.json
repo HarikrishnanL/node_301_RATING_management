@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "nyc mocha ./test/* --timeout 60000 --exit"
+    "test": "mocha ./test/* --timeout 60000 --exit"
   },
   "keywords": [],
   "author": "Harikrishnan Lakshminarayanan",
@@ -30,6 +30,8 @@
     "pg": "^8.7.1",
     "sequelize": "^6.6.5",
     "superagent": "^6.1.0",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6",
     "winston": "^3.3.3"
   }
 }

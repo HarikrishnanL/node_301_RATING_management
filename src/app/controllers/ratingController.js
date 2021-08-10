@@ -5,7 +5,9 @@ const fetchCustomerApi = require("../domain/service/fetchCustomerApi");
 const fetchRestaurantApi = require("../domain/service/fetchRestaurantApi");
 const amqp_connection_string = process.env.amqp_connection_string;
 const amqp_task_queue_str = "rating_post";
-const {  validationResult } = require('express-validator');
+const { validationResult } = require('express-validator');
+
+
 
 exports.getAllRating = async (req, res) => {
     try {
@@ -30,6 +32,7 @@ exports.getSingleRating = async (req, res, next) => {
         }
         const restaurant = await fetchRestaurantApi.getRestaurant(req.params.restaurantId, req.user.token);
         if (restaurant.status) {
+
             const rating = await ratingService.getSingleRating(req.params.rateId, req.user, restaurant);
             return apiResponse.successResponseWithData(res, "Single rating record found", rating);
         } else {
@@ -38,10 +41,10 @@ exports.getSingleRating = async (req, res, next) => {
             throw error;
         }
     } catch (error) {
-        console.log("getSingleRating ======>", error)
-        // if (!error.statusCode) {
-        error.statusCode = 404;
-        // }
+
+        if (!error.statusCode) {
+            error.statusCode = 500;
+        }
         next(error);
     }
 }
