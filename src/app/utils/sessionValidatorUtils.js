@@ -7,6 +7,7 @@ const customerCustomMessages = require('../domain/customMessages/customer')
 exports.sessionAuthValidator = (req, res, next) => {
 
     let authHeader = req.get('Authorization');
+    console.log("authorization",authHeader)
 
     if (!authHeader) {
         const error = new Error('AuthToken required');

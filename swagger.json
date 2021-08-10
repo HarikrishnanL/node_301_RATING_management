@@ -297,21 +297,21 @@
                 ],
                 "summary": "Get single rating record",
                 "description": "Get single rating record through rateId and restaurantId",
-                "parameters":[
+                "parameters": [
                     {
-                        "name":"rateId",
-                        "in":"path",
-                        "schema":{
-                            "type":"number",
-                            "required":true
+                        "name": "rateId",
+                        "in": "path",
+                        "schema": {
+                            "type": "number",
+                            "required": true
                         }
                     },
                     {
-                        "name":"restaurantId",
-                        "in":"path",
-                        "schema":{
-                            "type":"number",
-                            "required":true
+                        "name": "restaurantId",
+                        "in": "path",
+                        "schema": {
+                            "type": "number",
+                            "required": true
                         }
                     }
                 ],
@@ -323,11 +323,74 @@
                 ]
             }
         },
-        "/rating/restaurant/{restaurantId}":{
-            "post":{
-                "tags":["Rating"]
+        "/rating/restaurant/{restaurantId}": {
+            "post": {
+                "tags": [
+                    "Rating"
+                ]
             },
-            "summary":"Post rating"
+            "summary": "Post rating",
+            "description": "Post rating for a restaurant",
+            "produces": [
+                "application/json"
+            ],
+            "consumes": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "name": "restaurantId",
+                    "in": "path",
+                    "schema": {
+                        "type": "number",
+                        "required": true
+                    }
+                },
+                {
+                    "name": "body",
+                    "in": "body",
+                    "description": "create new rating",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                                "type":"object",
+                                "$ref":"#/definitions/rate"
+                        
+                        }
+                    }
+                }
+            ],
+            "responses": {},
+            "security": [
+                {
+                    "bearer": []
+                }
+            ]
+        }
+    },
+    "definitions": {
+        "rate": {
+            "type": "object",
+            "properties": {
+                "reviewComments": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "number"
+                }
+            }
+        },
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
         }
     }
 }
