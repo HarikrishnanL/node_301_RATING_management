@@ -1,18 +1,10 @@
 {
     "swagger": "2.0",
     "info": {
+        "description": "Rating Management API",
         "version": "1.0.0",
-        "title": "Library API",
-        "description": "Rating Management API"
+        "title": "Rating Management API"
     },
-    "host": "localhost:5004",
-    "basePath": "/rating-management",
-    "tags": [
-        {
-            "name": "Rating Review",
-            "description": "API in rating review"
-        }
-    ],
     "schemes": [
         "http"
     ],
@@ -23,258 +15,9 @@
             "in": "header"
         }
     },
-    "consumes": [
-        "application/json",
-        "application/bjson",
-        "application/xml"
-    ],
-    "produces": [
-        "application/json",
-        "application/bjson",
-        "application/xml"
-    ],
+    "host": "localhost:5004",
+    "basePath": "/rating-management",
     "paths": {
-        "/signup": {
-            "post": {
-                "tags": [
-                    "Customers"
-                ],
-                "parameters": [
-                    {
-                        "name": "name",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    },
-                    {
-                        "name": "gender",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    },
-                    {
-                        "name": "city",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    },
-                    {
-                        "name": "state",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    },
-                    {
-                        "name": "phone",
-                        "in": "query",
-                        "schema": {
-                            "type": "number",
-                            "required": true
-                        }
-                    },
-                    {
-                        "name": "email",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    },
-                    {
-                        "name": "password",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    }
-                ],
-                "summary": "Get customer logged in the system",
-                "responses": {}
-            }
-        },
-        "/login": {
-            "post": {
-                "tags": [
-                    "Customers"
-                ],
-                "parameters": [
-                    {
-                        "name": "email",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    },
-                    {
-                        "name": "password",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    }
-                ],
-                "summary": "Get customer logged in the system",
-                "responses": {}
-            }
-        },
-        "/update": {
-            "post": {
-                "tags": [
-                    "Customers"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    },
-                    {
-                        "name": "name",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    },
-                    {
-                        "name": "gender",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    },
-                    {
-                        "name": "city",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    },
-                    {
-                        "name": "state",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    },
-                    {
-                        "name": "phone",
-                        "in": "query",
-                        "schema": {
-                            "type": "number",
-                            "required": true
-                        }
-                    },
-                    {
-                        "name": "email",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    },
-                    {
-                        "name": "password",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    }
-                ],
-                "summary": "Update customer",
-                "responses": {},
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            }
-        },
-        "/delete": {
-            "post": {
-                "tags": [
-                    "Customers"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    }
-                ],
-                "summary": "Update customer",
-                "responses": {},
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            }
-        },
-        "/list": {
-            "get": {
-                "tags": [
-                    "Customers"
-                ],
-                "summary": "Get list of customers",
-                "description": "",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {},
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            }
-        },
-        "/getDetails/{id}": {
-            "get": {
-                "tags": [
-                    "Customers"
-                ],
-                "summary": "Get list of customers",
-                "description": "",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "schema": {
-                            "type": "string",
-                            "required": true
-                        }
-                    }
-                ],
-                "responses": {},
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            }
-        },
         "/rating/all": {
             "get": {
                 "tags": [
@@ -325,169 +68,161 @@
         },
         "/rating/restaurant/{restaurantId}": {
             "post": {
+                "summary": "Save the rating comments",
+                "description": "Save the rating comments",
                 "tags": [
                     "Rating"
-                ]
-            },
-            "summary": "Post rating",
-            "description": "Post rating for a restaurant",
-            "produces": [
-                "application/json"
-            ],
-            "consumes": [
-                "application/json"
-            ],
-            "parameters": [
-                {
-                    "name": "restaurantId",
-                    "in": "path",
-                    "schema": {
-                        "type": "number",
-                        "required": true
-                    }
-                },
-                {
-                    "name": "body",
-                    "in": "body",
-                    "description": "create new rating",
-                    "required": true,
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "type": "object",
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "restaurantId",
+                        "in": "path",
+                        "description": "restaurant id ",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "create rate object",
+                        "required": true,
+                        "schema": {
                             "$ref": "#/definitions/rate"
                         }
                     }
-                }
-            ],
-            "responses": {},
-            "security": [
-                {
-                    "bearer": []
-                }
-            ]
+                ],
+                "responses": {},
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
         },
-        "/rating/{rateId}": {
+        "/ratings/{rateId}": {
             "put": {
+                "summary": "Update the rate of a restaurant ",
+                "description": "Update the rate restaurant",
                 "tags": [
                     "Rating"
-                ]
-            },
-            "summary": "Put rating",
-            "description": "Put rating for a restaurant",
-            "produces": [
-                "application/json"
-            ],
-            "consumes": [
-                "application/json"
-            ],
-            "parameters": [
-                {
-                    "name": "rateId",
-                    "in": "path",
-                    "schema": {
-                        "type": "number",
-                        "required": true
-                    }
-                },
-                {
-                    "name": "body",
-                    "in": "body",
-                    "description": "create new rating",
-                    "required": true,
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "type": "object",
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "rateId",
+                        "in": "path",
+                        "description": "rate id of a restaurant",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "create rate object",
+                        "required": true,
+                        "schema": {
                             "$ref": "#/definitions/rate"
                         }
                     }
-                }
-            ],
-            "responses": {},
-            "security": [
-                {
-                    "bearer": []
-                }
-            ]
+                ],
+                "responses": {},
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
         },
-        "/rating/{rateId}": {
+        "/rating/status/{rateId}": {
             "patch": {
+                "summary": "Update the rate status of a restaurant ",
+                "description": "Update the rate status of a restaurant",
                 "tags": [
                     "Rating"
-                ]
-            },
-            "summary": "Patch rating",
-            "description": "Patch rating for a restaurant",
-            "produces": [
-                "application/json"
-            ],
-            "consumes": [
-                "application/json"
-            ],
-            "parameters": [
-                {
-                    "name": "rateId",
-                    "in": "path",
-                    "schema": {
-                        "type": "number",
-                        "required": true
-                    }
-                },
-                {
-                    "name": "body",
-                    "in": "body",
-                    "description": "create new rating",
-                    "required": true,
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "type": "object",
-                            "$ref": "#/definitions/rate"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "rateId",
+                        "in": "path",
+                        "description": "rate id of a restaurant",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "create rate object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/status"
                         }
                     }
-                }
-            ],
-            "responses": {},
-            "security": [
-                {
-                    "bearer": []
-                }
-            ]
+                ],
+                "responses": {},
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
         },
         "/rating/{rateId}": {
             "delete": {
+                "summary": "Delete the task",
+                "description": "Delete the task",
                 "tags": [
                     "Rating"
-                ]
-            },
-            "summary": "delete rating",
-            "description": "delete rating for a restaurant",
-            "produces": [
-                "application/json"
-            ],
-            "consumes": [
-                "application/json"
-            ],
-            "parameters": [
-                {
-                    "name": "rateId",
-                    "in": "path",
-                    "schema": {
-                        "type": "number",
-                        "required": true
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "rateId",
+                        "in": "path",
+                        "description": "rateId id that needs to be deleted",
+                        "required": true,
+                        "type": "number"
                     }
-                }
-            ],
-            "responses": {},
-            "security": [
-                {
-                    "bearer": []
-                }
-            ]
+                ],
+                "responses": {},
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
         }
     },
     "definitions": {
+        "ReviewResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "task": {
+                    "type": "string"
+                },
+                "assignee": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
         "rate": {
             "type": "object",
             "properties": {
@@ -495,6 +230,14 @@
                     "type": "string"
                 },
                 "rating": {
+                    "type": "number"
+                }
+            }
+        },
+        "status": {
+            "type": "object",
+            "properties": {
+                "status": {
                     "type": "number"
                 }
             }

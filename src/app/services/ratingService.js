@@ -125,7 +125,7 @@ exports.updateRatingStatus = async (body, rateId) => {
 
 exports.deleteRating = async (rateId) => {
     try {
-        const rating = await RatingModel.findOne({ where: { id: rateId, status: ratingStatus.Active } });
+        const rating = await RatingModel.findOne({ where: { id: rateId } });
         if (rating) {
             await RatingModel.destroy({ where: { id: rateId } });
             return true;

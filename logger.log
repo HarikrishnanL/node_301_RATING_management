@@ -82,3 +82,14 @@ Info: error timestamp: Aug-08-2021 message: Internal Server Error
 Info: error timestamp: Aug-08-2021 message: Not Found
 Info: error timestamp: Aug-08-2021 message: Not Found
 Info: error timestamp: Aug-08-2021 message: Not Found
+Info: error timestamp: Aug-11-2021 message: notNull Violation: rating.reviewComments cannot be null,
+notNull Violation: rating.rating cannot be null
+Info: error timestamp: Aug-11-2021 message: notNull Violation: rating.reviewComments cannot be null
+Info: error timestamp: Aug-11-2021 message: notNull Violation: rating.reviewComments cannot be null
+Info: error timestamp: Aug-11-2021 message: invalid input syntax for type integer: "{restaurantId}"
+Info: error timestamp: Aug-11-2021 message: rateId is not defined
+Info: error timestamp: Aug-11-2021 message: rateId is not defined
+Info: error timestamp: Aug-11-2021 message: rateId is not defined
+Info: error timestamp: Aug-11-2021 message: updateRatingStatus is not defined
+Info: error timestamp: Aug-11-2021 message: No such rating records available
+Info: error timestamp: Aug-11-2021 message: No such rating records available

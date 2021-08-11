@@ -17,9 +17,9 @@ router.get('/rating/all', authSessionValidator.sessionAuthValidator, ratingContr
 
 router.get('/rating/single/:rateId/restaurant/:restaurantId', authSessionValidator.sessionAuthValidator, validation.validateGetSingleRating, ratingController.getSingleRating);
 
-router.put('/rating/:rateId', authSessionValidator.sessionAuthValidator, validation.validateUpdateRating, ratingController.updateRating);
+router.put('/ratings/:rateId', authSessionValidator.sessionAuthValidator, validation.validateUpdateRating, ratingController.updateRating);
 
-router.patch('/rating/:rateId', authSessionValidator.sessionAuthValidator, validation.validateUpdateRatingStatus, ratingController.updateRatingStatus);
+router.patch('/rating/status/:rateId', authSessionValidator.sessionAuthValidator, validation.validateUpdateRatingStatus, ratingController.updateRatingStatus);
 
 router.delete('/rating/:rateId', authSessionValidator.sessionAuthValidator, validation.validateDeleteRating, ratingController.deleteRating);
 

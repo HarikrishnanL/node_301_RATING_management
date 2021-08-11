@@ -6,10 +6,12 @@ const fetchRestaurantApi = require("../domain/service/fetchRestaurantApi");
 const amqp_connection_string = process.env.amqp_connection_string;
 const amqp_task_queue_str = "rating_post";
 const { validationResult } = require('express-validator');
+const {promisify} = require("util");
+const redis_client = require("../config/redisConfiguration");
 
+const redisGet = promisify(redis_client.get).bind(redis_client);
 
-
-exports.getAllRating = async (req, res) => {
+exports.getAllRating = async (req, res,next) => {
     try {
         let { size, index, key, sortingPriority } = req.query;
         size = size ? size : 10;
@@ -51,7 +53,7 @@ exports.getSingleRating = async (req, res, next) => {
     }
 }
 
-exports.createRating = async (req, res) => {
+exports.createRating = async (req, res,next) => {
     try {
         let body = req.body;
         body.customerId = req.user.id;
@@ -67,6 +69,8 @@ exports.createRating = async (req, res) => {
                     return ch.sendToQueue(amqp_task_queue_str, Buffer.from(JSON.stringify({ userRating: rating })));
                 });
             }).catch(err => console.log("error amqp=======>", err));
+            // redis_client.setex();
+            // redis_client.get()
             return apiResponse.successResponseWithData(res, "Rating review add successfully", rating);
         } else {
             const error = new Error("No such restaurant found");
@@ -83,7 +87,7 @@ exports.createRating = async (req, res) => {
     }
 }
 
-exports.updateRating = async (req, res) => {
+exports.updateRating = async (req, res,next) => {
     try {
         const validationErrors = validationResult(req);
         if (!validationErrors.isEmpty()) {
@@ -102,7 +106,7 @@ exports.updateRating = async (req, res) => {
     }
 }
 
-exports.updateRatingStatus = async (req, res) => {
+exports.updateRatingStatus = async (req, res,next) => {
     try {
         const validationErrors = validationResult(req);
         if (!validationErrors.isEmpty()) {
@@ -122,15 +126,15 @@ exports.updateRatingStatus = async (req, res) => {
     }
 }
 
-exports.deleteRating = async (req, res) => {
+exports.deleteRating = async (req, res,next) => {
     try {
         const validationErrors = validationResult(req);
         if (!validationErrors.isEmpty()) {
             return res.status(400).json({ errors: validationErrors.array() });
         }
-        const deleteRating = await ratingService.deleteRating(rateId);
+        await ratingService.deleteRating(req.params.rateId);
 
-        return apiResponse.successResponseWithData(res, "Rating review deleted successfully", updateRatingStatus);
+        return apiResponse.successResponse(res, "Rating review deleted successfully");
 
     } catch (error) {
         logger.error(error.message);
