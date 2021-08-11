@@ -19,8 +19,10 @@ exports.getAllRating = async (req, res) => {
         const ratings = await ratingService.getAllRating(size, index, key, sortingPriority);
         return apiResponse.successResponseWithData(res, "All rating records found", ratings);
     } catch (error) {
-        logger.error(error.message);
-        return apiResponse.customErrorResponse(res, error.message, 404);
+        if (!error.statusCode) {
+            error.statusCode = 500;
+        }
+        next(error);
     }
 }
 
@@ -67,12 +69,17 @@ exports.createRating = async (req, res) => {
             }).catch(err => console.log("error amqp=======>", err));
             return apiResponse.successResponseWithData(res, "Rating review add successfully", rating);
         } else {
-            throw new Error("No such restaurant found");
+            const error = new Error("No such restaurant found");
+            error.statusCode = 404;
+            throw error;
         }
     } catch (error) {
-        console.log("error ====>", error);
+
         logger.error(error.message);
-        return apiResponse.customErrorResponse(res, error.message, 406);
+        if (!error.statusCode) {
+            error.statusCode = 500;
+        }
+        next(error);
     }
 }
 
@@ -88,7 +95,10 @@ exports.updateRating = async (req, res) => {
 
     } catch (error) {
         logger.error(error.message);
-        return apiResponse.customErrorResponse(res, error.message, 406);
+        if (!error.statusCode) {
+            error.statusCode = 500;
+        }
+        next(error);
     }
 }
 
@@ -103,7 +113,11 @@ exports.updateRatingStatus = async (req, res) => {
         return apiResponse.successResponseWithData(res, "Rating review status updated successfully", updateRatingStatus);
     } catch (error) {
         logger.error(error.message);
-        return apiResponse.customErrorResponse(res, error.message, 406);
+        if (!error.statusCode) {
+            error.statusCode = 500;
+        }
+        next(error);
+
 
     }
 }
@@ -115,13 +129,15 @@ exports.deleteRating = async (req, res) => {
             return res.status(400).json({ errors: validationErrors.array() });
         }
         const deleteRating = await ratingService.deleteRating(rateId);
-        if (deleteRating) {
-            return apiResponse.successResponseWithData(res, "Rating review deleted successfully", updateRatingStatus);
-        } else {
-            throw new Error("Failed to delete the rating records");
-        }
+
+        return apiResponse.successResponseWithData(res, "Rating review deleted successfully", updateRatingStatus);
+
     } catch (error) {
         logger.error(error.message);
-        return apiResponse.customErrorResponse(res, error.message, 406);
+        if (!error.statusCode) {
+            error.statusCode = 500;
+        }
+        next(error);
+
     }
 }

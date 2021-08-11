@@ -1,7 +1,5 @@
 const RatingModel = require('../models/RatingModel');
 const ratingStatus = require('../domain/enumerations/ratingStatus');
-let q = 'rating_management';
-
 
 exports.getAllRating = async (pageSize, pageIndex, sortingKey, sortingPriorty) => {
     try {
@@ -27,7 +25,9 @@ exports.getAllRating = async (pageSize, pageIndex, sortingKey, sortingPriorty) =
         if (ratings.rows.length > 0) {
             return { response: ratings.rows, "paginateData": paginateData }
         } else {
-            return new Error("No Ratings found");
+            const error = new Error("No Ratings found");
+            error.statusCode = 404;
+            throw error;
         }
 
     } catch (error) {
@@ -49,9 +49,11 @@ exports.getSingleRating = async (rateId, customer, restaurant) => {
         if (rating) {
             // rating.customer = customer;
             // rating.restaurant = restaurant;
-            return {rating,user:customer,restaurant:restaurant};
+            return { rating, user: customer, restaurant: restaurant };
         } else {
-            throw new Error("Such rating not found");
+            const error = new Error("Such rating not found");
+            error.statusCode = 404;
+            throw error;
         }
 
     } catch (error) {
@@ -65,7 +67,10 @@ exports.createRating = async (body) => {
         if (rating) {
             return rating;
         } else {
-            throw new Error("Failed to create rating for a restaurant");
+            const error = new Error("Failed to create rating for a restaurant");
+            error.statusCode = 406;
+            throw error;
+
         }
     } catch (error) {
         throw error;
@@ -80,10 +85,14 @@ exports.updateRating = async (body, rateId) => {
             if (updateRating[0] === 1) {
                 return true;
             } else {
-                throw new Error("Failed to update rating");
+                const error = new Error("Failed to update rating");
+                error.statusCode = 400;
+                throw error;
             }
         } else {
-            throw new Error("Such rating not found");
+            const error = new Error("Such rating not found");
+            error.statusCode = 404;
+            throw error;
         }
     } catch (error) {
         throw error;
@@ -98,10 +107,15 @@ exports.updateRatingStatus = async (body, rateId) => {
             if (updateRatingStatus[0] === 1) {
                 return true;
             } else {
-                throw new Error("Failed to update rating status");
+                const error = new Error("Failed to update rating status");
+                error.statusCode = 400;
+                throw error;
             }
         } else {
-            throw new Error("No such rating records available");
+            const error = new Error("No such rating records available");
+            error.statusCode = 404;
+            throw error;
+
         }
 
     } catch (error) {
@@ -116,7 +130,9 @@ exports.deleteRating = async (rateId) => {
             await RatingModel.destroy({ where: { id: rateId } });
             return true;
         } else {
-            throw new Error("Such rating not found");
+            const error = new Error("No such rating records available");
+            error.statusCode = 404;
+            throw error;
         }
     } catch (error) {
         throw error;

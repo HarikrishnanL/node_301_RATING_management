@@ -354,10 +354,128 @@
                     "schema": {
                         "type": "object",
                         "properties": {
-                                "type":"object",
-                                "$ref":"#/definitions/rate"
-                        
+                            "type": "object",
+                            "$ref": "#/definitions/rate"
                         }
+                    }
+                }
+            ],
+            "responses": {},
+            "security": [
+                {
+                    "bearer": []
+                }
+            ]
+        },
+        "/rating/{rateId}": {
+            "put": {
+                "tags": [
+                    "Rating"
+                ]
+            },
+            "summary": "Put rating",
+            "description": "Put rating for a restaurant",
+            "produces": [
+                "application/json"
+            ],
+            "consumes": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "name": "rateId",
+                    "in": "path",
+                    "schema": {
+                        "type": "number",
+                        "required": true
+                    }
+                },
+                {
+                    "name": "body",
+                    "in": "body",
+                    "description": "create new rating",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "type": "object",
+                            "$ref": "#/definitions/rate"
+                        }
+                    }
+                }
+            ],
+            "responses": {},
+            "security": [
+                {
+                    "bearer": []
+                }
+            ]
+        },
+        "/rating/{rateId}": {
+            "patch": {
+                "tags": [
+                    "Rating"
+                ]
+            },
+            "summary": "Patch rating",
+            "description": "Patch rating for a restaurant",
+            "produces": [
+                "application/json"
+            ],
+            "consumes": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "name": "rateId",
+                    "in": "path",
+                    "schema": {
+                        "type": "number",
+                        "required": true
+                    }
+                },
+                {
+                    "name": "body",
+                    "in": "body",
+                    "description": "create new rating",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "type": "object",
+                            "$ref": "#/definitions/rate"
+                        }
+                    }
+                }
+            ],
+            "responses": {},
+            "security": [
+                {
+                    "bearer": []
+                }
+            ]
+        },
+        "/rating/{rateId}": {
+            "delete": {
+                "tags": [
+                    "Rating"
+                ]
+            },
+            "summary": "delete rating",
+            "description": "delete rating for a restaurant",
+            "produces": [
+                "application/json"
+            ],
+            "consumes": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "name": "rateId",
+                    "in": "path",
+                    "schema": {
+                        "type": "number",
+                        "required": true
                     }
                 }
             ],
